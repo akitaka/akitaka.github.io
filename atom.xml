@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://akitaka.github.io/"/>
-  <updated>2014-05-08T00:18:21.598Z</updated>
+  <updated>2014-05-27T14:24:16.457Z</updated>
   <id>http://akitaka.github.io/</id>
   
   <author>
@@ -13,6 +13,27 @@
   </author>
   
   <generator uri="http://zespia.tw/hexo/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Google IP]]></title>
+    <link href="http://akitaka.github.io/2014/05/27/IP_Of_Google/"/>
+    <id>http://akitaka.github.io/2014/05/27/IP_Of_Google/</id>
+    <published>2014-05-27T14:04:43.000Z</published>
+    <updated>2014-05-27T14:22:55.000Z</updated>
+    <content type="html"><![CDATA[<h4 id="几个Google_IP地址直接访问。">几个Google IP地址直接访问。</h4>
+<p>前几个访问较快。</p>
+<p><a href="http://203.208.46.145" target="_blank">203.208.46.145</a><br><a href="http://203.208.46.146" target="_blank">203.208.46.146</a><br><a href="http://203.208.46.147" target="_blank">203.208.46.147</a><br><a href="http://203.208.46.148" target="_blank">203.208.46.148</a><br><a id="more"></a></p>
+<p><a href="http://173.194.45.20" target="_blank">173.194.45.20</a><br><a href="http://173.194.45.19" target="_blank">173.194.45.19</a><br><a href="http://173.194.45.18" target="_blank">173.194.45.18</a><br><a href="http://173.194.45.17" target="_blank">173.194.45.17</a><br><a href="http://173.194.45.16" target="_blank">173.194.45.16</a></p>
+<p><a href="http://74.125.31.106" target="_blank">74.125.31.106</a><br><a href="http://74.125.128.160" target="_blank">74.125.128.160</a><br><a href="http://74.125.235.97" target="_blank">74.125.235.97</a></p>
+<p><del><a href="http://64.233.183.147" target="_blank">64.233.183.147</a></del><br><del><a href="http://64.233.183.104" target="_blank">64.233.183.104</a></del><br><del><a href="http://64.233.183.103" target="_blank">64.233.183.103</a></del><br><del><a href="http://64.233.183.99" target="_blank">64.233.183.99</a></del><br><del><a href="http://74.125.71.104" target="_blank">74.125.71.104</a></del><br><del><a href="http://66.102.11.104" target="_blank">66.102.11.104</a></del></p>
+]]></content>
+    <summary type="html"><![CDATA[<h4 id="几个Google_IP地址直接访问。">几个Google IP地址直接访问。</h4>
+<p>前几个访问较快。</p>
+<p><a href="http://203.208.46.145" target="_blank">203.208.46.145</a><br><a href="http://203.208.46.146" target="_blank">203.208.46.146</a><br><a href="http://203.208.46.147" target="_blank">203.208.46.147</a><br><a href="http://203.208.46.148" target="_blank">203.208.46.148</a><br>]]></summary>
+    
+      <category term="Google" scheme="http://akitaka.github.io/tags/Google/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[iOS开发笔记(iBeacon & BLE)]]></title>
@@ -308,18 +329,6 @@
       <category term="iBeacon" scheme="http://akitaka.github.io/tags/iBeacon/"/>
     
       <category term="BLE" scheme="http://akitaka.github.io/tags/BLE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[iOS开发笔记（从NSURLConnection到NSURLSession）]]></title>
-    <link href="http://akitaka.github.io/2014/04/23/iOS_%20NSURLConnection_to_%20NSURLSession/"/>
-    <id>http://akitaka.github.io/2014/04/23/iOS_ NSURLConnection_to_ NSURLSession/</id>
-    <published>2014-04-23T01:07:32.000Z</published>
-    <updated>2014-04-23T02:02:26.000Z</updated>
-    <content type="html"><![CDATA[<h4 id="在2013年的WWDC上，Apple发表了新的API，NSURLSession来替代过去的NSURLConnection_API。">在2013年的WWDC上，Apple发表了新的API，NSURLSession来替代过去的NSURLConnection API。</h4>
-]]></content>
-    
     
   </entry>
   
