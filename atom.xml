@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://akitaka.github.io/"/>
-  <updated>2014-06-09T14:41:05.928Z</updated>
+  <updated>2014-07-02T07:33:00.826Z</updated>
   <id>http://akitaka.github.io/</id>
   
   <author>
@@ -13,6 +13,135 @@
   </author>
   
   <generator uri="http://zespia.tw/hexo/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[使用Linode搭建pptp服务器]]></title>
+    <link href="http://akitaka.github.io/2014/07/01/pptp_server_on_linode/"/>
+    <id>http://akitaka.github.io/2014/07/01/pptp_server_on_linode/</id>
+    <published>2014-07-01T11:06:51.000Z</published>
+    <updated>2014-07-02T07:31:55.000Z</updated>
+    <content type="html"><![CDATA[<p>pptp，你们懂的啊。最近各种。。。大家懂的。。。所以。。。<br>网上找了各种对比，觉得还是Linode比较靠谱，加上最近有了最低配置的10刀/月的已然够用。<br>因为Linode目前只支持国际信用卡支付，所以办理一张国际信用卡(例如: Visa, MasterCard, American Express, Discover)。</p>
+<p>废话不多说了。。。先来注册个账号吧^_^。<br>大家可以用<a href="https://www.linode.com/?r=e8c2ee3b7976cb836aecc9d0c43f95ed8178e14f" target="_blank">我的邀请链接</a>注册，这样你使用了90天后，我可以返回20刀。TXH～～( ^ω^)/<br><a id="more"></a><br>原文:<br>Referrals reward you when you refer people to Linode. If someone signs up using your referral code, you’ll receive a credit of $20.00, so long as the person you referred remains an active customer for 90 days.</p>
+<p>当然你可以选择直接在<a href="https://www.linode.com" target="_blank">linode官网</a>注册。</p>
+<p>登录是使用用户名，而非email地址。。。(我会跟你们说:我给坑了好久使劲输email不知道为嘛登不上去嘛。。。坑爹的习惯各种email登录。。。T^T</p>
+<p>注册完成后，可以在首页看到个黄色的警告，让我们完善个人信息。<br>填写名字、地址(都用拼音即可)、信用卡账号，在最底下有个预付费的选项，默认是20刀，先选了5刀，先试用一下～点击确认，直接银行通知我扣钱了。。。我。。。＝。＝｜｜<br>选择需要的主机，他是按照每小时扣钱的，而且可以随时修改。先选个最低配置的吧～<br>linode 1024～～～1024。。。1024。。。1024。。。我。。。似乎。。。<br><img src="/images/linode/addnode.jpg"><br>添加了linode之后。。。他就开始计费了，点Dashboard<br><img src="/images/linode/linodes.jpg"></p>
+<p>选择Rebuild，默认Debian7.5系统，在Root Password里设置个主机密码。这个密码就是以后用SSH远程登录的密码。<br><img src="/images/linode/rebuild.png"></p>
+<p>稍后，主机就新建完系统了，点Dashboard页面，这时候主机还没有开起来<br>在左边select下面有个Boot按钮，点击Boot启动主机，稍等片刻，主机就跑起来了。</p>
+<hr>
+<p>下面我们开始配置服务器，我用的是Mac，所以打开系统自带的终端即可，windows的可以下载一个putty使用。<br>tips: 系统自带vi，编辑文件前按<code>i</code>，保存推出依次输入<code>:wq</code>。</p>
+<hr>
+<p>SSH登录</p>
+<h4 id="在终端里输入">在终端里输入</h4>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="tag">ssh</span> <span class="tag">root</span><span class="at_rule">@<span class="keyword">服务器IP地址</span></span>
+</pre></td></tr></table></figure>
+
+<p>输入密码，首次连接输入yes。显示登录信息，光标跳动，已经登录成功。<br>在putty上<br>运行exe，填入IP地址，选择SSH。<br>然后点击Open，输入用户名和密码，即可。<br>tips: 密码输入过程中，不显示任何东西，大家不要以为没有输入。</p>
+<hr>
+<p>先更新一下系统:<br>因为已经是root用户登录了，所以不用加sudo，直接输入。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre>apt-<span class="keyword">get</span> update
+apt-<span class="keyword">get</span> upgrade
+</pre></td></tr></table></figure>
+
+<hr>
+<p>安装ppp、iptables、pptpd</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>apt-<span class="keyword">get</span> install ppp iptables pptpd
+</pre></td></tr></table></figure>
+
+<p>安装过程中，按照提示输入y继续。。。</p>
+<hr>
+<p>修改pptp配置</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre><span class="title">vi</span> /etc/pptpd.conf
+localip <span class="number">192.168.0.1</span>
+remoteip <span class="number">192.168.0.234</span>-<span class="number">238</span>,<span class="number">192.168.0.245</span>
+</pre></td></tr></table></figure>
+
+<p>修改pptpd-opeions</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+</pre></td><td class="code"><pre><span class="title">vi</span> /etc/ppp/pptpd-options
+<span class="comment">#在最后添加:</span>
+ms-dns <span class="number">8.8.8.8</span>
+ms-dns <span class="number">8.8.4.4</span>
+</pre></td></tr></table></figure>
+
+<p>用#注释掉require-mppe-128。(取消加密，在客户端配置时候需要选择加密方式:无</p>
+<hr>
+<p>设置ppp账号、密码</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre>vi /etc/ppp/chap<span class="attribute">-secrets</span>
+user pptpd <span class="number">123456</span> <span class="subst">*</span>
+</pre></td></tr></table></figure>
+
+<p>每一行都是:<code>账号 pptpd 密码 IP</code>格式，最后一个设置*表示自动分配IP，每个账号一行。</p>
+<hr>
+<p>修改内核设置:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+</pre></td><td class="code"><pre>vi /etc/sysctl<span class="preprocessor">.conf</span>
+
+net<span class="preprocessor">.ipv</span>4<span class="preprocessor">.ip</span>_forward = <span class="number">1</span>
+
+<span class="preprocessor">#注释掉net.ipv4.tcp_syncookies</span>
+<span class="preprocessor">#net.ipv4.tcp_syncookies = 1</span>
+</pre></td></tr></table></figure>
+
+<hr>
+<p>配置iptables转发规则</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+</pre></td><td class="code"><pre>iptables <span class="attribute">-t</span> nat <span class="attribute">-A</span> POSTROUTING <span class="attribute">-s</span> <span class="number">192.168</span><span class="number">.0</span><span class="number">.0</span>/<span class="number">24</span> <span class="attribute">-o</span> eth0 <span class="attribute">-j</span> MASQUERADE
+<span class="comment">//有时候因为 TCP MSS 大小造成部分网站无法访问问题</span>
+iptables <span class="attribute">-I</span> FORWARD <span class="attribute">-p</span> tcp <span class="subst">--</span>syn <span class="attribute">-i</span> ppp<span class="subst">+</span> <span class="attribute">-j</span> TCPMSS <span class="subst">--</span><span class="built_in">set</span><span class="attribute">-mss</span> <span class="number">1356</span>
+iptables<span class="attribute">-save</span>
+</pre></td></tr></table></figure>
+
+<hr>
+<p>重启pptp服务</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>/etc/init<span class="preprocessor">.d</span>/pptpd restart
+</pre></td></tr></table></figure>
+
+<hr>
+<p>OK以上就是服务器端的配置啦。<br>下面开始配置客户端。</p>
+<hr>
+<p>Mac:<br>打开系统偏好设置-&gt;网络<br>点击左下角的加号<br>接口，选择VPN<br><img src="/images/linode/vpn_mac.png"></p>
+<p>VPN类型，选择pptp<br><img src="/images/linode/vpn_type.png"></p>
+<p>服务器地址填入主机的IP地址<br>账号填入在chap-secrets中写入的账号<br><img src="/images/linode/vpn_mac_set.png"></p>
+<p>加密选择: 无</p>
+<p>点击鉴定设置，输入密码。</p>
+<p>点击高级：勾选通过VPN发送所有流量。<br><img src="/images/linode/vpn_mac_gaoji.png"></p>
+<p>点击连接，稍后就可以看到上面的连接状态了。<br>连接后可以。。。该干嘛干嘛了＝。＝～</p>
+<hr>
+<p>iPad:<br>设置-&gt;通用，拉到最下面，有个VPN<br>点击进去，选择添加VPN配置<br><img src="/images/linode/iPad_setting.png"></p>
+<p>在tab上，点击pptp；<br>描述随便填一个喜欢的名字；<br>服务器填入主机IP地址；<br>账户、密码填入服务器上设置的用户名和密码 (服务器上ip地址设置的*，可以同一个账户同时在多个设备上登录，如果固定IP，多设备登录可能会造成IP冲突，导致无法上网<br>加密级别，选择无<br>然后点击右上角的存储，保存当前设置。<br>点击配置勾选，然后打开第一行右边的开关，第二行会显示已连接。<br>好了，打开Safari测试一下吧～<br>iPhone上配置过程也相似。</p>
+<hr>
+<p>Android:<br>点击系统设置，在无线和网络找到VPN，点击添加VPN配置文件<br>输入名称，类型选择PPTP<br>填入服务器IP地址<br>取消勾选ppp加密(MPPE)；<br>点击保存；<br>然后单击刚才添加的名称，输入用户名和密码，点击连接。<br>稍后就可以看到已成功连接。</p>
+<p>嗯。。。以上。。。祝大家成功。。。（≧∇≦）</p>
+]]></content>
+    <summary type="html"><![CDATA[<p>pptp，你们懂的啊。最近各种。。。大家懂的。。。所以。。。<br>网上找了各种对比，觉得还是Linode比较靠谱，加上最近有了最低配置的10刀/月的已然够用。<br>因为Linode目前只支持国际信用卡支付，所以办理一张国际信用卡(例如: Visa, MasterCard, American Express, Discover)。</p>
+<p>废话不多说了。。。先来注册个账号吧^_^。<br>大家可以用<a href="https://www.linode.com/?r=e8c2ee3b7976cb836aecc9d0c43f95ed8178e14f" target="_blank">我的邀请链接</a>注册，这样你使用了90天后，我可以返回20刀。TXH～～( ^ω^)/<br>]]></summary>
+    
+      <category term="vpn" scheme="http://akitaka.github.io/tags/vpn/"/>
+    
+      <category term="pptp" scheme="http://akitaka.github.io/tags/pptp/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[利用Automator自动下载WWDC 2014资源]]></title>
@@ -40,16 +169,16 @@
     <link href="http://akitaka.github.io/2014/05/27/IP_Of_Google/"/>
     <id>http://akitaka.github.io/2014/05/27/IP_Of_Google/</id>
     <published>2014-05-27T14:04:43.000Z</published>
-    <updated>2014-05-27T14:22:55.000Z</updated>
+    <updated>2014-07-02T01:33:41.000Z</updated>
     <content type="html"><![CDATA[<h4 id="几个Google_IP地址直接访问。">几个Google IP地址直接访问。</h4>
-<p>前几个访问较快。</p>
+<p>前几个访问较快。<br>好吧，以下IP都阵亡了。。。壮哉局域网。</p>
 <p><a href="http://203.208.46.145" target="_blank">203.208.46.145</a><br><a href="http://203.208.46.146" target="_blank">203.208.46.146</a><br><a href="http://203.208.46.147" target="_blank">203.208.46.147</a><br><a href="http://203.208.46.148" target="_blank">203.208.46.148</a><br><a id="more"></a></p>
 <p><a href="http://173.194.45.20" target="_blank">173.194.45.20</a><br><a href="http://173.194.45.19" target="_blank">173.194.45.19</a><br><a href="http://173.194.45.18" target="_blank">173.194.45.18</a><br><a href="http://173.194.45.17" target="_blank">173.194.45.17</a><br><a href="http://173.194.45.16" target="_blank">173.194.45.16</a></p>
 <p><a href="http://74.125.31.106" target="_blank">74.125.31.106</a><br><a href="http://74.125.128.160" target="_blank">74.125.128.160</a><br><a href="http://74.125.235.97" target="_blank">74.125.235.97</a></p>
 <p><del><a href="http://64.233.183.147" target="_blank">64.233.183.147</a></del><br><del><a href="http://64.233.183.104" target="_blank">64.233.183.104</a></del><br><del><a href="http://64.233.183.103" target="_blank">64.233.183.103</a></del><br><del><a href="http://64.233.183.99" target="_blank">64.233.183.99</a></del><br><del><a href="http://74.125.71.104" target="_blank">74.125.71.104</a></del><br><del><a href="http://66.102.11.104" target="_blank">66.102.11.104</a></del></p>
 ]]></content>
     <summary type="html"><![CDATA[<h4 id="几个Google_IP地址直接访问。">几个Google IP地址直接访问。</h4>
-<p>前几个访问较快。</p>
+<p>前几个访问较快。<br>好吧，以下IP都阵亡了。。。壮哉局域网。</p>
 <p><a href="http://203.208.46.145" target="_blank">203.208.46.145</a><br><a href="http://203.208.46.146" target="_blank">203.208.46.146</a><br><a href="http://203.208.46.147" target="_blank">203.208.46.147</a><br><a href="http://203.208.46.148" target="_blank">203.208.46.148</a><br>]]></summary>
     
       <category term="Google" scheme="http://akitaka.github.io/tags/Google/"/>
