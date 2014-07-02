@@ -104,7 +104,7 @@ ga('send', 'pageview');
     <div class="entry depth">
       
         <p>pptp，你们懂的啊。最近各种。。。大家懂的。。。所以。。。<br>网上找了各种对比，觉得还是Linode比较靠谱，加上最近有了最低配置的10刀/月的已然够用。<br>因为Linode目前只支持国际信用卡支付，所以办理一张国际信用卡(例如: Visa, MasterCard, American Express, Discover)。</p>
-<p>废话不多说了。。。先来注册个账号吧^_^。<br>大家可以用<a href="https://www.linode.com/?r=e8c2ee3b7976cb836aecc9d0c43f95ed8178e14f" target="_blank">我的邀请链接</a>注册，这样你使用了90天后，我可以返回20刀。TXH～～( ^ω^)/<br>
+<p>废话不多说了。。。先来注册个账号吧^_^。<br>大家可以用 <a href="https://www.linode.com/?r=e8c2ee3b7976cb836aecc9d0c43f95ed8178e14f" target="_blank">我的邀请链接</a> 注册，这样你使用了90天后，我可以返回20刀。TXH～～( ^ω^)/<br>
       
     </div>
     <footer>
@@ -501,70 +501,15 @@ ga('send', 'pageview');
 <li>Mac OS X(10.7 or above, because the following steps are all on Mac OS X);</li>
 </ol>
 <hr>
-<h4 id="The_following_steps_to_set_up_an_SD_card_with_Raspbian_Wheezy_system_image:">The following steps to set up an SD card with Raspbian Wheezy system image:</h4>
-<hr>
-<ol>
-<li>Insert your new SD card into Mac internal sd card reader.</li>
-<li>Open Terminal and execute <code>df -h</code><h4 id="view_the_currently_mounted_disks_and_it’s_free_space-_This_command_should_show_something_as_below:">view the currently mounted disks and it’s free space. This command should show something as below:</h4>
-</li>
-</ol>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-</pre></td><td class="code"><pre><span class="function_or_atom">er</span>:~ <span class="function_or_atom">tom</span>$ <span class="function_or_atom">df</span> -<span class="function_or_atom">h</span>
-<span class="function_or_atom">system</span>      <span class="variable">Size</span>   <span class="variable">Used</span>  <span class="variable">Avail</span> <span class="variable">Capacity</span>  <span class="function_or_atom">iused</span>    <span class="function_or_atom">ifree</span> <span class="comment">%iused  Mounted on</span>
-/<span class="function_or_atom">disk0s2</span>   <span class="number">233</span><span class="variable">Gi</span>  <span class="number">187</span><span class="variable">Gi</span>   <span class="number">45</span><span class="variable">Gi</span>    <span class="number">81</span><span class="comment">% 49169583 11899857   81%   /</span>
-<span class="function_or_atom">s</span>          <span class="number">187</span><span class="variable">Ki</span>  <span class="number">187</span><span class="variable">Ki</span>    <span class="number">0</span><span class="variable">Bi</span>   <span class="number">100</span><span class="comment">%      648        0  100%   /dev</span>
--<span class="function_or_atom">hosts</span>       <span class="number">0</span><span class="variable">Bi</span>    <span class="number">0</span><span class="variable">Bi</span>    <span class="number">0</span><span class="variable">Bi</span>   <span class="number">100</span><span class="comment">%        0        0  100%   /net</span>
-<span class="function_or_atom">auto_home</span>    <span class="number">0</span><span class="variable">Bi</span>    <span class="number">0</span><span class="variable">Bi</span>    <span class="number">0</span><span class="variable">Bi</span>   <span class="number">100</span><span class="comment">%        0        0  100%   /home</span>
-/<span class="function_or_atom">disk3s1</span>    <span class="number">15</span><span class="variable">Gi</span>  <span class="number">2.3</span><span class="variable">Mi</span>   <span class="number">15</span><span class="variable">Gi</span>     <span class="number">1</span><span class="comment">%        0        0  100%   /Volumes/NO NAME</span>
-</pre></td></tr></table></figure>
-
-<pre><code>####Find the disk size close your SD card size, my SD card is 16G, so find <span class="tag">&lt;<span class="title">code</span>&gt;</span>/dev/disk3s1<span class="tag">&lt;/<span class="title">code</span>&gt;</span> is my SD card.
-<span class="comment">&lt;!--more--&gt;</span>
-</code></pre><ol>
-<li>Umount the disk, but not eject, execute <code>diskutil umount /dev/disk3s1</code>, keep the SD card in place.<h4 id="The_command_should_show_like_below:">The command should show like below:</h4>
-</li>
-</ol>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-</pre></td><td class="code"><pre>er:~ tom$ diskutil umount /dev/disk3s1
-<span class="keyword">me</span> NO NAME <span class="function_start"><span class="keyword">on</span></span> disk3s1 unmounted
-</pre></td></tr></table></figure>
-
-<ol>
-<li>Extract the downloaded zip file, you can get the .img file.</li>
-<li>Be careful! the next step is <font color="red">very dangerous</font>, make sure that you are not mistaken in setting the target SD card device path! </li>
-<li>Execute the dd in command:<h4 id="if=_is_the_path_of_your_-img_file,_and_of=_is_your_SD_card_path">if= is the path of your .img file, and of= is your SD card path</h4>
-<h4 id="notice:_the_path_above_is_/dev/disk3s1,_but_we_just_need_/dev/disk3_only-">notice: the path above is /dev/disk3s1, but we just need /dev/disk3 only.</h4>
-</li>
-</ol>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-</pre></td><td class="code"><pre>er:~ tom$ sudo dd <span class="keyword">if</span>=/Users/tom/Desktop/<span class="number">2014</span>-<span class="number">01</span>-<span class="number">07</span>-wheezy-raspbian.img <span class="operator">of</span>=/dev/disk3 bs=<span class="number">1</span>m
-<span class="built_in">word</span>:
-+<span class="number">0</span> records <span class="operator">in</span>
-+<span class="number">0</span> records out
-<span class="number">227200</span> <span class="keyword">bytes</span> transferred <span class="operator">in</span> <span class="number">1611.596172</span> <span class="built_in">secs</span> (<span class="number">1838070</span> <span class="keyword">bytes</span>/<span class="built_in">sec</span>)
-</pre></td></tr></table></figure>
-
-<pre><code>####Be patience, This takes a <span class="typename">bit</span> long <span class="typename">time</span> <span class="keyword">for</span> waiting it finish. <span class="keyword">In</span> my <span class="keyword">case</span> it takes almost half an hour, usd <span class="number">16</span>G Sandisk class <span class="number">10</span> SDHC SD card <span class="keyword">to</span> flash the image <span class="keyword">file</span> <span class="keyword">to</span> SD Card. It may quicker <span class="keyword">or</span> longer <span class="keyword">for</span> your SD card.
-</code></pre><ol>
-<li>After finished flashing image to SD card, you may see a disk named boot on the disktop. Then eject the SD card on your mac, insert it to your Raspberry Pi.</li>
-</ol>
-<h4 id="Plug_the_Raspberry_Pi_power_adapter,_USB_keyboard,_connect_the_HDMI_display_port_to_a_HDMI_capable_display_monitor_or_TV,_Congratulations~_You_are_successfully_finished~!">Plug the Raspberry Pi power adapter, USB keyboard, connect the HDMI display port to a HDMI capable display monitor or TV, Congratulations~ You are successfully finished~!</h4>
 
       
     </div>
     <footer>
       
+        
+          <div class="alignleft">
+            <a href="/2014/03/19/start_raspberry_pi/#more" class="more-link">Read More</a>
+          </div>
         
         
       
