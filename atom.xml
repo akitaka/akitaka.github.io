@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://akitaka.github.io/"/>
-  <updated>2014-07-03T00:47:08.885Z</updated>
+  <updated>2014-07-03T07:07:55.987Z</updated>
   <id>http://akitaka.github.io/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://akitaka.github.io/2014/07/01/pptp_server_on_linode/"/>
     <id>http://akitaka.github.io/2014/07/01/pptp_server_on_linode/</id>
     <published>2014-07-01T11:06:51.000Z</published>
-    <updated>2014-07-03T00:46:49.000Z</updated>
+    <updated>2014-07-03T07:07:25.000Z</updated>
     <content type="html"><![CDATA[<p>pptp，你们懂的啊。最近各种。。。大家懂的。。。所以。。。<br>网上找了各种对比，觉得还是Linode比较靠谱，加上最近有了最低配置的10刀/月的已然够用。<br>因为Linode目前只支持国际信用卡支付，所以办理一张国际信用卡(例如: Visa, MasterCard, American Express, Discover)。</p>
 <p>废话不多说了。。。先来注册个账号吧^_^。<br>大家可以用 <a href="https://www.linode.com/?r=e8c2ee3b7976cb836aecc9d0c43f95ed8178e14f" target="_blank">我的邀请链接</a> 注册，这样你使用了90天后，我可以返回20刀。TXH～～( ^ω^)/<br><a id="more"></a><br>原文:<br>Referrals reward you when you refer people to Linode. If someone signs up using your referral code, you’ll receive a credit of $20.00, so long as the person you referred remains an active customer for 90 days.</p>
 <p>当然你可以选择直接在<a href="https://www.linode.com" target="_blank">linode官网</a>注册。</p>
@@ -99,6 +99,7 @@ net<span class="preprocessor">.ipv</span>4<span class="preprocessor">.ip</span>_
 <span class="preprocessor">#net.ipv4.tcp_syncookies = 1</span>
 </pre></td></tr></table></figure>
 
+<p>重启服务<code>sysctl -p</code></p>
 <hr>
 <p>配置iptables转发规则</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre>1
