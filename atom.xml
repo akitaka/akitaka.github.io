@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://akitaka.github.io/"/>
-  <updated>2014-07-02T10:31:43.985Z</updated>
+  <updated>2014-07-03T00:47:08.885Z</updated>
   <id>http://akitaka.github.io/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://akitaka.github.io/2014/07/01/pptp_server_on_linode/"/>
     <id>http://akitaka.github.io/2014/07/01/pptp_server_on_linode/</id>
     <published>2014-07-01T11:06:51.000Z</published>
-    <updated>2014-07-02T10:29:35.000Z</updated>
+    <updated>2014-07-03T00:46:49.000Z</updated>
     <content type="html"><![CDATA[<p>pptp，你们懂的啊。最近各种。。。大家懂的。。。所以。。。<br>网上找了各种对比，觉得还是Linode比较靠谱，加上最近有了最低配置的10刀/月的已然够用。<br>因为Linode目前只支持国际信用卡支付，所以办理一张国际信用卡(例如: Visa, MasterCard, American Express, Discover)。</p>
 <p>废话不多说了。。。先来注册个账号吧^_^。<br>大家可以用 <a href="https://www.linode.com/?r=e8c2ee3b7976cb836aecc9d0c43f95ed8178e14f" target="_blank">我的邀请链接</a> 注册，这样你使用了90天后，我可以返回20刀。TXH～～( ^ω^)/<br><a id="more"></a><br>原文:<br>Referrals reward you when you refer people to Linode. If someone signs up using your referral code, you’ll receive a credit of $20.00, so long as the person you referred remains an active customer for 90 days.</p>
 <p>当然你可以选择直接在<a href="https://www.linode.com" target="_blank">linode官网</a>注册。</p>
@@ -28,7 +28,7 @@
 <p>选择Rebuild，默认Debian7.5系统，在Root Password里设置个主机密码。这个密码就是以后用SSH远程登录的密码。<br><img src="/images/linode/rebuild.png"></p>
 <p>稍后，主机就新建完系统了，点Dashboard页面，这时候主机还没有开起来<br>在左边select下面有个Boot按钮，点击Boot启动主机，稍等片刻，主机就跑起来了。</p>
 <hr>
-<p>下面我们开始配置服务器，我用的是Mac，所以打开系统自带的终端即可，windows的可以下载一个putty使用。<br>tips: 系统自带vi，编辑文件前按<code>i</code>，保存推出依次输入<code>:wq</code>。</p>
+<p>下面我们开始配置服务器，我用的是Mac，所以打开系统自带的终端即可，windows的可以下载一个putty使用。<br>tips: 系统自带vi，编辑文件前按<code>i</code>，保存、退出：按esc键，然后依次输入<code>:wq</code>。</p>
 <hr>
 <p>SSH登录</p>
 <h4 id="在终端里输入">在终端里输入</h4>
