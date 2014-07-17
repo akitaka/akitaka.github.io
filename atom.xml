@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://akitaka.github.io/"/>
-  <updated>2014-07-08T03:25:31.639Z</updated>
+  <updated>2014-07-17T11:20:10.564Z</updated>
   <id>http://akitaka.github.io/</id>
   
   <author>
@@ -19,10 +19,10 @@
     <link href="http://akitaka.github.io/2014/07/01/pptp_server_on_linode/"/>
     <id>http://akitaka.github.io/2014/07/01/pptp_server_on_linode/</id>
     <published>2014-07-01T11:06:51.000Z</published>
-    <updated>2014-07-08T03:25:05.000Z</updated>
+    <updated>2014-07-14T14:12:22.000Z</updated>
     <content type="html"><![CDATA[<p>pptp，你们懂的啊。最近各种。。。大家懂的。。。所以。。。<br>网上找了各种对比，觉得还是Linode比较靠谱，加上最近有了最低配置的10刀/月的已然够用。<br>因为Linode目前只支持国际信用卡支付，所以办理一张国际信用卡(例如: Visa, MasterCard, American Express, Discover)。</p>
 <p>废话不多说了。。。先来注册个账号吧^_^。<br>大家可以用 <a href="https://www.linode.com/?r=e8c2ee3b7976cb836aecc9d0c43f95ed8178e14f" target="_blank">我的邀请链接</a> 注册，这样你使用了90天后，我可以返回20刀。TXH～～( ^ω^)/</p>
-<p>注册时填上优惠码: BOOTSTRAPPEDFM 即送50刀。<br>仅限新用户注册。<br><a id="more"></a><br>原文:<br>Referrals reward you when you refer people to Linode. If someone signs up using your referral code, you’ll receive a credit of $20.00, so long as the person you referred remains an active customer for 90 days.</p>
+<p><del>注册时填上优惠码: BOOTSTRAPPEDFM 即送50刀。</del><br><del>仅限新用户注册。</del><br>已过期。。。TAT<br><a id="more"></a><br>原文:<br>Referrals reward you when you refer people to Linode. If someone signs up using your referral code, you’ll receive a credit of $20.00, so long as the person you referred remains an active customer for 90 days.</p>
 <p>当然你可以选择直接在<a href="https://www.linode.com" target="_blank">linode官网</a>注册。</p>
 <p>登录是使用用户名，而非email地址。。。(我会跟你们说:我给坑了好久使劲输email不知道为嘛登不上去嘛。。。坑爹的习惯各种email登录。。。T^T</p>
 <p>注册完成后，可以在首页看到个黄色的警告，让我们完善个人信息。<br>填写名字、地址(都用拼音即可)、信用卡账号，在最底下有个预付费的选项，默认是20刀，先选了5刀，先试用一下～点击确认，直接银行通知我扣钱了。。。我。。。＝。＝｜｜<br>选择需要的主机，他是按照每小时扣钱的，而且可以随时修改。先选个最低配置的吧～<br>linode 1024～～～1024。。。1024。。。1024。。。我。。。似乎。。。<br><img src="/images/linode/addnode.jpg"><br>添加了linode之后。。。他就开始计费了，点Dashboard<br><img src="/images/linode/linodes.jpg"></p>
@@ -138,7 +138,7 @@ iptables<span class="attribute">-save</span>
 ]]></content>
     <summary type="html"><![CDATA[<p>pptp，你们懂的啊。最近各种。。。大家懂的。。。所以。。。<br>网上找了各种对比，觉得还是Linode比较靠谱，加上最近有了最低配置的10刀/月的已然够用。<br>因为Linode目前只支持国际信用卡支付，所以办理一张国际信用卡(例如: Visa, MasterCard, American Express, Discover)。</p>
 <p>废话不多说了。。。先来注册个账号吧^_^。<br>大家可以用 <a href="https://www.linode.com/?r=e8c2ee3b7976cb836aecc9d0c43f95ed8178e14f" target="_blank">我的邀请链接</a> 注册，这样你使用了90天后，我可以返回20刀。TXH～～( ^ω^)/</p>
-<p>注册时填上优惠码: BOOTSTRAPPEDFM 即送50刀。<br>仅限新用户注册。<br>]]></summary>
+<p><del>注册时填上优惠码: BOOTSTRAPPEDFM 即送50刀。</del><br><del>仅限新用户注册。</del><br>已过期。。。TAT<br>]]></summary>
     
       <category term="vpn" scheme="http://akitaka.github.io/tags/vpn/"/>
     
