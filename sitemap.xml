@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://akitaka.github.io/2014/07/24/nativeAppDesign/</loc>
+    <lastmod>2014-07-24T07:30:27.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://akitaka.github.io/2014/07/01/pptp_server_on_linode/</loc>
     <lastmod>2014-07-01T11:06:51.000Z</lastmod>
   </url>

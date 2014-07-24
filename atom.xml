@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://akitaka.github.io/"/>
-  <updated>2014-07-23T08:02:47.665Z</updated>
+  <updated>2014-07-24T07:38:36.463Z</updated>
   <id>http://akitaka.github.io/</id>
   
   <author>
@@ -13,6 +13,125 @@
   </author>
   
   <generator uri="http://zespia.tw/hexo/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[移动App架构模式 (转载)]]></title>
+    <link href="http://akitaka.github.io/2014/07/24/nativeAppDesign/"/>
+    <id>http://akitaka.github.io/2014/07/24/nativeAppDesign/</id>
+    <published>2014-07-24T07:30:27.000Z</published>
+    <updated>2014-07-24T07:37:55.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="移动App架构模式">移动App架构模式</h2>
+<p>本文主要总结了几种常用的架构模式, 基本是层层递进的, 转载请注名出处 <a href="http://blog.csdn.net/uxyheaven" target="_blank">http://blog.csdn.net/uxyheaven</a></p>
+<p>在一个app的不同生命周期采用不同的架构模式可以有效的提高开发效率</p>
+<h3 id="基本的MVC">基本的MVC</h3>
+<p>移动app一般都是采用经典的mvc架构<br><a id="more"></a><br>| 层次 | 作用 | 设计原则 |<br>| —————— | ——————- | —————— |<br>| 模型层(model) | 封装了应用的一系列数据, 并定义了操作, 处理这些数据的逻辑和计算规则。  | 通过C：Notification,KVO对控制器进行反馈 |<br>| 视图层(view) | 视图对象是一个应用中, 用户可以看到的对象. 视图对象知道如何绘制自己, 也能够响应用户的操作. 视图对象的主要目的之一是将应用模型对象中的数据显示出来, 并允许用户编辑该数据 | 视图通过不能直接操作模型层, 通过target-action, delegate, dataSource和控制器进行反馈 |<br>| 控制器层(controller) | 控制器层是在视图层和若干个模型层的中间人  | c可以直接操作模型层和视图层 |</p>
+<p><img src="/images/appDesign/mvc.png" alt="Mou icon"></p>
+<p>总结:<br>C对M：API<br>C对V：Outlet<br>V对C：Target-action， Delegate，Datasource<br>M对C：Notification，KVO</p>
+<h3 id="MVC的改进版_MVVM">MVC的改进版 MVVM</h3>
+<p>MVVM是在MVC的基础上多了一个View Model: 表示逻辑, 将 model 的数据转换为 view 可以呈现的东西.</p>
+<p><img src="/images/appDesign/mvvm.png" alt="Mou icon"></p>
+<h3 id="三层架构">三层架构</h3>
+<p>我们在来看一下经典的三层架构</p>
+<p>从上至下为</p>
+<ul>
+<li>表示层(UI)</li>
+<li>业务逻辑层或称为领域层(BLL)</li>
+<li>数据访问层(DAL)</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>层次</th>
+<th>作用</th>
+<th>设计原则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>表示层(UI)</td>
+<td>向用户展现特定业务数据，采集用户的输入信息和操作</td>
+<td>用户至上，兼顾简洁；不包含任何业务相关的逻辑处理</td>
+</tr>
+<tr>
+<td>业务逻辑层(BLL)</td>
+<td>从ＤＡＬ中获取数据, 在ＵＩ显示; 从ＵＩ中获取用户指令和数据, 执行业务逻辑或通过ＤＡＬ写入数据源</td>
+<td>作为U层与Ｄ层的桥梁,目的在于展现清晰的函数结构, 只负责数据处理传递, 不涉及ＳＱＬ语句和ＡＤＯ.ＮＥＴ</td>
+</tr>
+<tr>
+<td>数据访问层(DAL)</td>
+<td>直接操作数据库，针对数据的增添 删除 修改 查找; 具体为业务逻辑层或表示层提供数据服务。</td>
+<td>专门操作数据库, 不考虑数据合法性. 数据库错误返回－1, 逻辑错误返回0, 并告知错误原因, 成功返回1</td>
+</tr>
+</tbody>
+</table>
+<p><img src="/images/appDesign/mvc_vs_3.png" alt="Mou icon"></p>
+<p>然后呢,我们现在的架构则是<br><img src="/images/appDesign/3.png" alt="Mou icon"></p>
+<h3 id="四层架构">四层架构</h3>
+<p>在三层架构的基础上多了业务规则层, 常的三层是把业务逻辑和业务规则合并为一个层，统称为业务层.业务规则层的提出,既可以及时处理用户输入的不合法信息, 又可以及时处理数据库错误, 增大了业务逻辑层的结构清晰度, 让业务逻辑人员专心致志做逻辑 </p>
+<p>从上至下为</p>
+<ul>
+<li>表示层</li>
+<li>业务规则层</li>
+<li>业务逻辑层或称为领域层</li>
+<li>数据访问层</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>层次</th>
+<th>作用</th>
+<th>设计原则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>业务规则层(ECL)</td>
+<td>对于UI层传下来的参数来说，检查合法性。</td>
+<td>用户至上，兼顾简洁；不包含任何业务相关的逻辑处理</td>
+</tr>
+</tbody>
+</table>
+<h3 id="五层架构">五层架构</h3>
+<p>一般情况下, 我们的业务逻辑放在中间层, 那么对内部的这些大量种类繁多，使用方法也各异的不同的类的调用任务，就完全落到了表示层. 这样势必会增加表示层的代码量, 将表示层的任务复杂化, 和表示层只负责接受用户的输入并返回结果的任务不太相称, 并增加了层与层之间的耦合程度. 因此呢,我们需要增加接口去去统一的管理这些业务, 是设计模式中Facade模式的思想.</p>
+<p>从上至下为</p>
+<ul>
+<li>表示层</li>
+<li>业务外观层</li>
+<li>业务规则层</li>
+<li>业务逻辑层或称为领域层</li>
+<li>数据访问层</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>层次</th>
+<th>作用</th>
+<th>设计原则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>业务外观层</td>
+<td>为负责子系统中的一组接口提供一个一致而且简单的接口。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="新秀VIPER">新秀VIPER</h3>
+<p>viper这里不多说了,请想了解的自行搜索<br><img src="/images/appDesign/viper.png" alt="Mou icon"></p>
+]]></content>
+    <summary type="html"><![CDATA[<h2 id="移动App架构模式">移动App架构模式</h2>
+<p>本文主要总结了几种常用的架构模式, 基本是层层递进的, 转载请注名出处 <a href="http://blog.csdn.net/uxyheaven" target="_blank">http://blog.csdn.net/uxyheaven</a></p>
+<p>在一个app的不同生命周期采用不同的架构模式可以有效的提高开发效率</p>
+<h3 id="基本的MVC">基本的MVC</h3>
+<p>移动app一般都是采用经典的mvc架构<br>]]></summary>
+    
+      <category term="design" scheme="http://akitaka.github.io/tags/design/"/>
+    
+      <category term="app" scheme="http://akitaka.github.io/tags/app/"/>
+    
+      <category term="framework" scheme="http://akitaka.github.io/tags/framework/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[使用Linode搭建pptp服务器]]></title>
